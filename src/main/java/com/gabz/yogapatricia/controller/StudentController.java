@@ -102,11 +102,4 @@ public class StudentController {
         return "redirect:/student";
     }
 
-    @GetMapping("/group")
-    public String manageGroups(Model model) {
-
-        model.addAttribute("groups", groupRepository.findAll());
-        return "student/groups";
-    }
-
 }

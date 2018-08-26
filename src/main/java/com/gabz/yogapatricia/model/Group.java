@@ -15,7 +15,7 @@ public class Group {
     @NotEmpty
     @NotNull
     private String name;
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Student> students;
 
     public Group() {

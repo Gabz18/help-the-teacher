@@ -1,7 +1,7 @@
 package com.gabz.yogapatricia.model;
 
+
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,7 +12,6 @@ public class Student {
     @GeneratedValue
     private int studentId;
     private String firstname;
-    @NotEmpty
     @NotNull
     @Size(min = 3)
     private String lastname;
