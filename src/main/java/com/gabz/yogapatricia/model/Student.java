@@ -1,12 +1,42 @@
 package com.gabz.yogapatricia.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
 public class Student {
 
+    @Id
+    @GeneratedValue
     private int id;
+    @NotEmpty
+    @NotNull
+    @Size(min = 3)
     private String firstname;
+    @NotEmpty
+    @NotNull
+    @Size(min = 3)
     private String lastname;
+    @NotNull
+    @NotEmpty
     private String email;
+    @NotNull
+    @NotEmpty
     private String phone;
+
+    public Student() {
+    }
+
+    public Student(String firstname, String lastname, String email, String phone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+    }
 
     public int getId() {
         return id;
