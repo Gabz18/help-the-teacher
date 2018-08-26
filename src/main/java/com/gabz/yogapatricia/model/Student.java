@@ -1,8 +1,6 @@
 package com.gabz.yogapatricia.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,7 +10,7 @@ public class Student {
 
     @Id
     @GeneratedValue
-    private int id;
+    private int studentId;
     private String firstname;
     @NotEmpty
     @NotNull
@@ -20,19 +18,22 @@ public class Student {
     private String lastname;
     private String email;
     private String phone;
+    @ManyToOne
+    @JoinColumn(name="group_id")
+    private Group group;
 
     public Student() {
     }
 
-    public Student(String firstname, String lastname, String email, String phone) {
+    public Student(String firstname, String lastname, String email, String phone, Group group) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phone = phone;
     }
 
-    public int getId() {
-        return id;
+    public int getStudentId() {
+        return studentId;
     }
 
     public String getFirstname() {
@@ -65,5 +66,13 @@ public class Student {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

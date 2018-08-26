@@ -6,6 +6,7 @@
     <div class="row classic-margin">
         <h1 class="col-md">Liste des Elèves</h1>
         <div class="col-md text-right">
+            <a class="btn btn-lg btn-primary" th:href="@{student/group}">Gérer Groupes</a>
             <a class="btn btn-lg btn-success" th:href="@{student/add}">Ajouter Elève</a>
         </div>
     </div>
@@ -16,6 +17,7 @@
                 <th scope="col">Prénom</th>
                 <th scope="col">@</th>
                 <th scope="col">Téléphone</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +26,7 @@
                 <td th:text="${student.firstname}"></td>
                 <td th:text="${student.email}"></td>
                 <td th:text="${student.phone}"></td>
+                <td><a th:href="@{student/edit/{id}(id=${student.studentId})}"><i class="material-icons">edit</i></a></td>
             </tr>
         </tbody>
     </table>

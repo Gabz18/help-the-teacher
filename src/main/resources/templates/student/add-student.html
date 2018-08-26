@@ -4,9 +4,9 @@
 </head>
 <body class="container-fluid">
     <nav th:replace="fragments :: navbar"></nav>
-    <h1 class="classic-margin">Ajouter un élève</h1>
+    <h1 class="classic-margin" th:text="${pageTitle}">Ajouter un élève</h1>
     <hr/>
-    <form method="post" th:action="@{/student/add}" th:object="${student}">
+    <form method="post" th:object="${student}">
         <div class="form-group">
             <label th:for="firstname">Prénom</label>
             <input th:field="*{firstname}" class="form-control"/>
@@ -19,11 +19,26 @@
             <label th:for="email">@Email</label>
             <input th:field="*{email}" class="form-control" type="email">
         </div>
-        <div>
+        <div class="form-group">
             <label th:for="phone">Téléphone</label>
             <input th:field="*{phone}" class="form-control"/>
         </div>
-        <button class="btn btn-lg btn-success classic-margin" type="submit">Ajouter</button>
+        <div class="form-group">
+            <label for="group">Groupe :</label>
+            <select class="form-control" id="group" name="group">
+                <option th:each="group : ${groups}" th:text="${group.name}" th:value="${group.groupId}"></option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <button class="btn btn-lg btn-success classic-margin" type="submit">Valider</button>
+            </div>
+            <div class="col-md text-right">
+                <a class="btn btn-lg btn-danger classic-margin"
+                   th:if="${delete} == true"
+                   th:href="@{/student/remove/{id}(id=${student.studentId})}">Supprimer Elève</a>
+            </div>
+        </div>
     </form>
 </body>
 </html>
