@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container-fluid">
+    <nav th:replace="fragments :: navbar"></nav>
+    <h1 class="classic-margin">Ajouter un élève</h1>
+    <hr/>
+    <form method="post" th:action="@{/student/add}" th:object="${student}">
+        <div class="form-group">
+            <label th:for="firstname">Prénom</label>
+            <input th:field="*{firstname}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label th:for="lastname">Nom</label>
+            <input th:field="*{lastname}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label th:for="email">@Email</label>
+            <input th:field="*{email}" class="form-control" type="email">
+        </div>
+        <div>
+            <label th:for="phone">Téléphone</label>
+            <input th:field="*{phone}" class="form-control"/>
+        </div>
+        <button class="btn btn-lg btn-success classic-margin" type="submit">Ajouter</button>
+    </form>
+</body>
+</html>

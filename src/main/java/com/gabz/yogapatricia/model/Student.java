@@ -13,19 +13,12 @@ public class Student {
     @Id
     @GeneratedValue
     private int id;
-    @NotEmpty
-    @NotNull
-    @Size(min = 3)
     private String firstname;
     @NotEmpty
     @NotNull
     @Size(min = 3)
     private String lastname;
-    @NotNull
-    @NotEmpty
     private String email;
-    @NotNull
-    @NotEmpty
     private String phone;
 
     public Student() {

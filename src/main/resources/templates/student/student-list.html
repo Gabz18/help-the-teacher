@@ -3,5 +3,29 @@
 <head th:replace="fragments :: head"></head>
 <body class="container-fluid">
     <nav th:replace="fragments :: navbar"></nav>
+    <div class="row classic-margin">
+        <h1 class="col-md">Liste des Elèves</h1>
+        <div class="col-md text-right">
+            <a class="btn btn-lg btn-success" th:href="@{student/add}">Ajouter Elève</a>
+        </div>
+    </div>
+    <table class="table table-striped classic-margin">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">@</th>
+                <th scope="col">Téléphone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${students}">
+                <th scope="row" th:text="${student.lastname}"></th>
+                <td th:text="${student.firstname}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.phone}"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
