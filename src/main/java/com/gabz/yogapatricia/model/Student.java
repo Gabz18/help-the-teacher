@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -24,8 +25,11 @@ public class Student {
     @ManyToOne
     @JoinColumn(name="group_id")
     private Group group;
+    @ManyToMany
+    private List<Course> courses;
 
     public Student() {
+
     }
 
     public Student(String firstname, String lastname, String email, String phone, Group group) {
@@ -77,5 +81,13 @@ public class Student {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 }

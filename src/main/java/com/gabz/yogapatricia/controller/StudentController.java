@@ -29,6 +29,7 @@ public class StudentController {
     public String getStudentList(Model model) {
 
         model.addAttribute("students", studentRepository.findAll());
+        model.addAttribute("title", "Liste des élèves");
         return "student/student-list";
     }
 

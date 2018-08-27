@@ -1,22 +1,22 @@
 package com.gabz.yogapatricia.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "course_group")
+@Table(name = "learning_group")
 public class Group {
 
     @Id
     @GeneratedValue
     private int groupId;
-    @NotEmpty
-    @NotNull
+    @Size(min = 3, message = "Champ requis")
     private String name;
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Student> students;
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    private List<Course> courses;
 
     public Group() {
 

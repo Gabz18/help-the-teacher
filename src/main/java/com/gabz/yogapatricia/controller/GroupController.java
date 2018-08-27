@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/group")
@@ -30,12 +32,12 @@ public class GroupController {
     }
 
     @PostMapping("")
-    public String sumitNewGroup(@ModelAttribute @Valid Group group, Errors errors, Model model) {
+    public String submitNewGroup(@ModelAttribute("newGroup") @Valid Group group, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("newGroup", group);
             model.addAttribute("groups", groupRepository.findAll());
-            return "redirect:/group";
+            return "group/groups";
         }
 
         groupRepository.save(group);
@@ -47,5 +49,31 @@ public class GroupController {
 
         groupRepository.deleteById(groupdId);
         return "redirect:/group";
+    }
+
+    @GetMapping("/{id}")
+    public String getGroupStudents(@PathVariable(name = "id") Integer groupId, Model model) {
+
+        Optional<Group> group = groupRepository.findById(groupId);
+        if (!group.isPresent()) {
+            return "redirect:/group";
+        }
+
+        model.addAttribute("students", studentRepository.findStudentsByGroup(group.get()));
+        model.addAttribute("title", "Liste des élèves pour le groupe " + group.get().getName());
+        return "student/student-list";
+    }
+
+    @PostMapping("/edit/{id}")
+    @ResponseBody
+    public boolean editGroup(@PathVariable(name = "id") Integer id, @RequestParam(name = "editedGroupName") String newGroupName) {
+
+        Optional<Group> group = groupRepository.findById(id);
+        if (newGroupName.length() > 2 && group.isPresent()) {
+            Group upcomingModifications = group.get();
+            upcomingModifications.setName(newGroupName);
+            groupRepository.save(upcomingModifications);
+        }
+        return true;
     }
 }

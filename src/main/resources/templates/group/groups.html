@@ -9,11 +9,24 @@
     <div class="card classic-margin-bot" th:each="group : ${groups}">
         <div class="card-body row">
             <div class="col-md">
-                <h5 class="card-title" th:text="${group.name}"></h5>
+                <h5 id="group-title" class="card-title" th:text="${group.name}"></h5>
+                <div id="group-edition" style="display: none" class="row">
+                    <div class="col-md-8">
+                            <input class="form-control"
+                                   type="text"
+                                   id="editedGroupName"
+                                   th:value="${group.name}">
+                            <input id="groupId" type="hidden" th:value="${group.groupId}">
+                    </div>
+                    <i id="submit-edit" class="col-md-2 large material-icons">check</i>
+                    <i id="cancel-edit" class="col-md-2 material-icons">cancel</i>
+                </div>
+
                 <p class="card-text" th:text="${group.students.size()} + ' Elèves'"></p>
+                <a th:href="@{/group/{id}(id=${group.groupId})}" class="btn btn-lg btn-info">Voir Liste Elèves</a>
             </div>
             <div class="col-md text-center">
-                <button class="btn btn-primary btn-lg">Editer</button>
+                <button id="edit-button" class="btn btn-primary btn-lg">Editer</button>
                 <a th:href="@{/group/remove/{id}(id=${group.groupId})}" class="btn btn-danger btn-lg">Supprimer</a>
             </div>
         </div>
@@ -27,6 +40,7 @@
                         <div class="form-group">
                             <label th:for="name">Nom</label>
                             <input th:field="*{name}" class="form-control"/>
+                            <div th:errors="*{name}" class="alert alert-warning"></div>
                         </div>
                     </div>
                     <div class="col-md text-center">
@@ -37,4 +51,5 @@
         </div>
     </div>
 </body>
+<script th:src="@{/js/group.js}"></script>
 </html>

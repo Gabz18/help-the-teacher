@@ -4,7 +4,7 @@
 <body class="container-fluid">
     <nav th:replace="fragments :: navbar"></nav>
     <div class="row classic-margin">
-        <h1 class="col-md">Liste des Elèves</h1>
+        <h1 class="col-md" th:text="${title}">Liste des élèves</h1>
         <div class="col-md text-right">
             <a class="btn btn-lg btn-success" th:href="@{/student/add}">Ajouter Elève</a>
         </div>
