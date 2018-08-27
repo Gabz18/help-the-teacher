@@ -14,18 +14,22 @@
         <div class="form-group">
             <label th:for="lastname">Nom</label>
             <input th:field="*{lastname}" class="form-control"/>
+            <div th:errors="*{lastname}" class="alert alert-warning"></div>
         </div>
         <div class="form-group">
             <label th:for="email">@Email</label>
             <input th:field="*{email}" class="form-control" type="email">
+            <div th:errors="*{email}" class="alert alert-warning"></div>
         </div>
         <div class="form-group">
             <label th:for="phone">Téléphone</label>
             <input th:field="*{phone}" class="form-control"/>
+            <div th:errors="*{phone}" class="alert alert-warning"></div>
         </div>
         <div class="form-group">
             <label for="group">Groupe :</label>
             <select class="form-control" id="group" name="group">
+                <option value="-1" >Aucun</option>
                 <option th:each="group : ${groups}" th:text="${group.name}" th:value="${group.groupId}"></option>
             </select>
         </div>

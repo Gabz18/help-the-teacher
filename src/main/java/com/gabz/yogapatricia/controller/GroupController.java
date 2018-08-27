@@ -26,7 +26,7 @@ public class GroupController {
 
         model.addAttribute("groups", groupRepository.findAll());
         model.addAttribute("newGroup", new Group());
-        return "student/groups";
+        return "group/groups";
     }
 
     @PostMapping("")

@@ -2,7 +2,9 @@ package com.gabz.yogapatricia.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -13,9 +15,11 @@ public class Student {
     private int studentId;
     private String firstname;
     @NotNull
-    @Size(min = 3)
+    @Size(min = 3, message = "Champ requis")
     private String lastname;
+    @Email(message = "Email Incorrect")
     private String email;
+    @Pattern(regexp="(^$|[0-9]{10})", message = "Numéro Incorrect")
     private String phone;
     @ManyToOne
     @JoinColumn(name="group_id")

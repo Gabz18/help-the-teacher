@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/student")
@@ -42,7 +43,7 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public String submitAddStudentForm(@ModelAttribute @Valid Student student, Model model, Errors errors, HttpServletRequest request) {
+    public String submitAddStudentForm(@ModelAttribute @Valid Student student, Errors errors, Model model, HttpServletRequest request) {
 
         if (errors.hasErrors()) {
 
@@ -53,8 +54,10 @@ public class StudentController {
             return "student/add-student";
         }
 
-        Group group = groupRepository.findById(Integer.parseInt(request.getParameter("group"))).get();
-        student.setGroup(group);
+        Optional<Group> group = groupRepository.findById(Integer.parseInt(request.getParameter("group")));
+        if (group.isPresent()) {
+            student.setGroup(group.get());
+        }
         studentRepository.save(student);
         return "redirect:/student";
     }
@@ -74,8 +77,8 @@ public class StudentController {
     @PostMapping("/edit/{id}")
     public String submitStudentEdition(@PathVariable(name = "id") Integer studentId,
                                        Model model,
-                                       Errors errors,
                                        @ModelAttribute @Valid Student student,
+                                       Errors errors,
                                        HttpServletRequest request) {
 
         if (errors.hasErrors()) {
@@ -88,8 +91,10 @@ public class StudentController {
             return "student/add-student";
         }
 
-        Group group = groupRepository.findById(Integer.parseInt(request.getParameter("group"))).get();
-        student.setGroup(group);
+        Optional<Group> group = groupRepository.findById(Integer.parseInt(request.getParameter("group")));
+        if (group.isPresent()) {
+            student.setGroup(group.get());
+        }
         studentRepository.deleteById(studentId);
         studentRepository.save(student);
         return "redirect:/student";
