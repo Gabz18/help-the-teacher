@@ -9,8 +9,8 @@
         <h3>Nouveau Cours</h3>
     </button>
     <div class="row classic-margin">
-        <div class="col-4">
-            <div th:each="course : ${courses}" class="card">
+        <div class="col-4" th:each="course : ${courses}">
+            <div class="card">
                 <div class="card-body">
                     <h4 class="card-title" th:text="${course.group.name}"></h4>
                     <h5 class="card-subtitle mb-2 text-muted" th:text="${course.date}"></h5>
