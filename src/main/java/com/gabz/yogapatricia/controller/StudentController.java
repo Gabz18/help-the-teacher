@@ -108,4 +108,33 @@ public class StudentController {
         return "redirect:/student";
     }
 
+    @GetMapping("/get/{id}")
+    @ResponseBody
+    public Student getStudent(@PathVariable Integer id) {
+
+        Optional<Student> student = studentRepository.findById(id);
+        if (!student.isPresent()) {
+            return null;
+        }
+
+        Student finalStudent = student.get();
+        finalStudent.setGroup(null);
+        finalStudent.setCourses(null);
+        return student.get();
+    }
+
+    @PostMapping("/set-notes/{id}")
+    @ResponseBody
+    public boolean setNotes(@PathVariable Integer id, @RequestParam("notes") String notes) {
+
+        Optional<Student> optionalStudent = studentRepository.findById(id);
+        if (!optionalStudent.isPresent()) {
+            return false;
+        }
+
+        Student student = optionalStudent.get();
+        student.setLearningNotes(notes);
+        studentRepository.save(student);
+        return true;
+    }
 }

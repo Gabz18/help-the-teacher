@@ -27,6 +27,7 @@ public class Student {
     private Group group;
     @ManyToMany
     private List<Course> courses;
+    private String learningNotes;
 
     public Student() {
 
@@ -89,5 +90,13 @@ public class Student {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    public String getLearningNotes() {
+        return learningNotes;
+    }
+
+    public void setLearningNotes(String learningNotes) {
+        this.learningNotes = learningNotes;
     }
 }

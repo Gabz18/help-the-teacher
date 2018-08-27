@@ -41,7 +41,7 @@ public class CourseController {
     public String addCourseForm(@PathVariable Integer id, Model model) {
 
         Optional<Group> optionalGroup = groupRepository.findById(id);
-        if (!optionalGroup.isPresent() || optionalGroup.get().getStudents().size() > 1) {
+        if (!optionalGroup.isPresent() || optionalGroup.get().getStudents().size() < 1) {
             return "redirect:/course";
         }
 
