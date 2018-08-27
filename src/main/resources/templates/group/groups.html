@@ -22,7 +22,7 @@
                     <i id="cancel-edit" class="col-md-2 material-icons">cancel</i>
                 </div>
 
-                <p class="card-text" th:text="${group.students.size()} + ' Elèves'"></p>
+                <p class="card-text" th:text="${group.students.size()} + ' Elève(s) | ' + ${courseRepo.findByGroup(group).size()} + ' Cour(s) passé(s) pour ce groupe'"></p>
                 <a th:href="@{/group/{id}(id=${group.groupId})}" class="btn btn-lg btn-info">Voir Liste Elèves</a>
             </div>
             <div class="col-md text-center">

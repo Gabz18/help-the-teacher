@@ -1,6 +1,7 @@
 package com.gabz.yogapatricia.controller;
 
 import com.gabz.yogapatricia.model.Group;
+import com.gabz.yogapatricia.repository.CourseRepository;
 import com.gabz.yogapatricia.repository.GroupRepository;
 import com.gabz.yogapatricia.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,15 @@ public class GroupController {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private CourseRepository courseRepository;
+
     @GetMapping("")
     public String getGroups(Model model) {
 
         model.addAttribute("groups", groupRepository.findAll());
         model.addAttribute("newGroup", new Group());
+        model.addAttribute("courseRepo", courseRepository);
         return "group/groups";
     }
 
