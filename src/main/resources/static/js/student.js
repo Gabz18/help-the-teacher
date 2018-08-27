@@ -1,6 +1,14 @@
 var studentId = null;
 var student = null;
 
+$("#filter-student-input").keyup(function () {
+
+    var input = $(this).val().toLowerCase();
+    $(".student-row").filter(function () {
+       $(this).toggle($(this).text().toLowerCase().indexOf(input) > -1);
+    });
+});
+
 $(".notes-button").click(function () {
 
     studentId = $(this).attr("id");
