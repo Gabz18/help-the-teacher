@@ -4,3 +4,10 @@
 .classic-margin-bot {
     margin-bottom: 1rem;
 }
+.checkbox-list {
+    font-size: 200%;
+}
+.big-checkbox {
+    height: 25px;
+    width: 25px;
+}

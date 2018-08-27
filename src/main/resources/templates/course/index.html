@@ -3,5 +3,43 @@
 <head th:replace="fragments :: head"></head>
 <body class="container-fluid">
     <nav th:replace="fragments :: navbar"></nav>
+    <h1 class="classic-margin">Mes cours</h1>
+    <hr/>
+    <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary w-100">
+        <h3>Nouveau Cours</h3>
+    </button>
+    <div class="row classic-margin">
+        <div class="col-4">
+            <div th:each="course : ${courses}" class="card">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${course.group.name}"></h4>
+                    <h5 class="card-subtitle mb-2 text-muted" th:text="${course.date}"></h5>
+                    <p class="card-text" th:text="${course.students.size()} + ' Participants sur ' + ${course.group.students.size()}"></p>
+                    <a href="#" class="card-link">Voir la liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Choisissez un groupe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <a th:each="group : ${groups}" th:href="@{/course/add/{id}(id=${group.groupId})}">
+                            <li class="list-group-item" style="margin-bottom: 1rem;">
+                                <h6 th:text="${group.name}"></h6>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

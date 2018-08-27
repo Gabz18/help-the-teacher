@@ -2,6 +2,7 @@ package com.gabz.yogapatricia.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,9 @@ public class Course {
     private int id;
     @ManyToOne
     @JoinColumn(name = "group_id")
+    @NotNull
     private Group group;
+    @NotNull
     private Date date;
     @ManyToMany
     private List<Student> students;
