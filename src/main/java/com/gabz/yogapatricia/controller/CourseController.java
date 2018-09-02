@@ -7,14 +7,13 @@ import com.gabz.yogapatricia.repository.CourseRepository;
 import com.gabz.yogapatricia.repository.GroupRepository;
 import com.gabz.yogapatricia.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.expression.Lists;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/course")
@@ -33,7 +32,10 @@ public class CourseController {
     public String getCourses(Model model) {
 
         model.addAttribute("groups", groupRepository.findAll());
-        model.addAttribute("courses", courseRepository.findAll());
+        List<Course> courses = courseRepository.findAll();
+        Collections.reverse(courses);
+        model.addAttribute("courses", courses);
+
         return "course/index";
     }
 

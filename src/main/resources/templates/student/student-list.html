@@ -3,43 +3,33 @@
 <head th:replace="fragments :: head"></head>
 <body class="container-fluid">
     <nav th:replace="fragments :: navbar"></nav>
-    <div class="row classic-margin">
-        <h1 class="col-md" th:text="${title}">Liste des élèves</h1>
-        <div class="col-md text-right">
-            <a class="btn btn-lg btn-success" th:href="@{/student/add}">Ajouter Elève</a>
-        </div>
-    </div>
+    <h1 class="col-md" th:text="${title}">Liste des élèves</h1>
+    <hr/>
     <div class="row">
-        <div class="col-3 content-center">
+        <div class="col-6 content-center">
             <input placeholder="Filtrer les élèves" type="text" class="form-control" id="filter-student-input"/>
         </div>
-
+        <div class="col-6 text-right">
+            <a class="btn btn-lg btn-success" th:href="@{/student/add}">Ajouter Elève</a>
+        </div>
     </div>
     <table class="table table-striped classic-margin">
         <thead>
             <tr>
                 <th scope="col">Nom</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">@</th>
-                <th scope="col">Téléphone</th>
                 <th scope="col">Groupe</th>
-                <th scope="col">Notes</th>
-                <th scope="col"></th>
+                <th scope="col" style="width: 20%;"></th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="student : ${students}" class="student-row">
-                <th scope="row" th:text="${student.lastname}"></th>
-                <td th:text="${student.firstname}"></td>
-                <td th:text="${student.email}"></td>
-                <td th:text="${student.phone}"></td>
+                <th scope="row" th:text="${student.lastname} + ' ' + ${student.firstname}"></th>
                 <td th:text="${student.group} == null ? 'Aucun' : ${student.group.name}"></td>
                 <td><i th:class="${student.learningNotes} != '' ? 'green material-icons notes-button' : 'material-icons notes-button'"
                        th:id="${student.studentId}"
                        style="font-size:2rem; cursor: pointer"
                        data-toggle="modal"
                        data-target="#exampleModal">insert_comment</i></td>
-                <td><a th:href="@{student/edit/{id}(id=${student.studentId})}"><i style="font-size: 2rem;" class="material-icons">edit</i></a></td>
             </tr>
         </tbody>
     </table>

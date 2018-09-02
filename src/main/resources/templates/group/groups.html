@@ -22,8 +22,8 @@
                         <i id="submit-edit" class="col-2 large material-icons">check</i>
                         <i id="cancel-edit" class="col-2 large material-icons">cancel</i>
                     </div>
-
-                    <p class="card-text" th:text="${group.students.size()} + ' Elève(s) | ' + ${courseRepo.findByGroup(group).size()} + ' Cour(s) passé(s) pour ce groupe'"></p>
+                    <p class="card-text" th:text="${group.students.size()} + ' Elève(s)'"></p>
+                    <p class="card-text" th:text="${courseRepo.findByGroup(group).size()} + ' Cour(s) passé(s) pour ce groupe'"></p>
                 </div>
             </div>
             <div class="row text-center">

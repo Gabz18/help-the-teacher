@@ -14,3 +14,7 @@
 .green {
     color: #17a2b8!important;
 }
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
