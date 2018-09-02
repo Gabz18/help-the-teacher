@@ -9,7 +9,7 @@
         <h3>Nouveau Cours</h3>
     </button>
     <div class="row classic-margin">
-        <div class="col-4" th:each="course : ${courses}">
+        <div class="col-12 col-lg-4 classic-margin-bot" th:each="course : ${courses}">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title" th:text="${course.group.name}"></h4>

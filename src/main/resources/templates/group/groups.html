@@ -7,31 +7,39 @@
     <h1 class="classic-margin">Mes Groupes</h1>
     <hr/>
     <div class="card classic-margin-bot" th:each="group : ${groups}">
-        <div class="card-body row">
-            <div class="col-md">
-                <h5 id="group-title" class="card-title" th:text="${group.name}"></h5>
-                <div id="group-edition" style="display: none" class="row">
-                    <div class="col-md-8">
+        <div class="card-body">
+            <div class="row classic-margin-bot">
+                <div class="col-12">
+                    <h5 id="group-title" class="card-title" th:text="${group.name}"></h5>
+                    <div id="group-edition" style="display: none" class="row">
+                        <div class="col-8">
                             <input class="form-control"
                                    type="text"
                                    id="editedGroupName"
                                    th:value="${group.name}">
                             <input id="groupId" type="hidden" th:value="${group.groupId}">
+                        </div>
+                        <i id="submit-edit" class="col-2 large material-icons">check</i>
+                        <i id="cancel-edit" class="col-2 large material-icons">cancel</i>
                     </div>
-                    <i id="submit-edit" class="col-md-2 large material-icons">check</i>
-                    <i id="cancel-edit" class="col-md-2 material-icons">cancel</i>
-                </div>
 
-                <p class="card-text" th:text="${group.students.size()} + ' Elève(s) | ' + ${courseRepo.findByGroup(group).size()} + ' Cour(s) passé(s) pour ce groupe'"></p>
-                <a th:href="@{/group/{id}(id=${group.groupId})}" class="btn btn-lg btn-info">Voir Liste Elèves</a>
+                    <p class="card-text" th:text="${group.students.size()} + ' Elève(s) | ' + ${courseRepo.findByGroup(group).size()} + ' Cour(s) passé(s) pour ce groupe'"></p>
+                </div>
             </div>
-            <div class="col-md text-center">
-                <button id="edit-button" class="btn btn-primary btn-lg">Editer</button>
-                <a th:href="@{/group/remove/{id}(id=${group.groupId})}" class="btn btn-danger btn-lg">Supprimer</a>
+            <div class="row text-center">
+                <div class="col-12 col-lg-6 classic-margin-bot">
+                    <a th:href="@{/group/{id}(id=${group.groupId})}" class="btn btn-lg btn-block btn-info">Voir Liste Elèves</a>
+                </div>
+                <div class="col-6">
+                    <button id="edit-button" class="btn btn-primary btn-lg btn-block">Editer</button>
+                </div>
+                <div class="col-6">
+                    <a th:href="@{/group/remove/{id}(id=${group.groupId})}" class="btn btn-danger btn-lg btn-block">Supprimer</a>
+                </div>
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card classic-margin-bot">
         <div class="card-body">
             <form method="post" th:object="${newGroup}">
                 <h5 class="card-title">Ajouter un groupe</h5>

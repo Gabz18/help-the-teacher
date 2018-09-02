@@ -65,7 +65,7 @@ public class GroupController {
         }
 
         model.addAttribute("students", studentRepository.findStudentsByGroup(group.get()));
-        model.addAttribute("title", "Liste des élèves pour le groupe " + group.get().getName());
+        model.addAttribute("title", "Groupe " + group.get().getName());
         return "student/student-list";
     }
 
