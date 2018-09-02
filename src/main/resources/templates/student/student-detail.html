@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <title></title>
+</head>
+<body class="container-fluid">
+    <nav th:replace="fragments :: navbar"></nav>
+    <h1 class="page-title classic-margin" th:text="${student.firstname} + ' ' + ${student.lastname}"></h1>
+    <hr/>
+    <div class="row border-bottom classic-margin">
+        <div class="col-2">
+            <h5><i class="large material-icons">phone</i></h5>
+        </div>
+        <div class="col-10">
+            <a th:href="'tel:' + ${student.phone}"><p th:text="${student.phone}"></p></a>
+        </div>
+    </div>
+    <div class="row border-bottom classic-margin">
+        <div class="col-2">
+            <h5><i class="large material-icons">email</i></h5>
+        </div>
+        <div class="col-10">
+            <a th:href="'mailto:' + ${student.email}"><p th:text="${student.email}"></p></a>
+        </div>
+    </div>
+    <div class="row border-bottom classic-margin">
+        <div class="col-2">
+            <h5><i class="large material-icons">group</i></h5>
+        </div>
+        <div class="col-10">
+            <a th:href="'/group/' + ${student.group.groupId}"><p th:text="${student.group.name}"></p></a>
+        </div>
+    </div>
+    <div class="row border-bottom classic-margin">
+        <div class="col-2">
+            <h5><i class="large material-icons">notes</i></h5>
+        </div>
+        <div class="col-10">
+            <p th:text="${student.learningNotes.length()} > 0 ? ${student.learningNotes} : 'Pas de notes'"></p>
+        </div>
+    </div>
+</body>
+</html>

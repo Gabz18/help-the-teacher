@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head"></head>
 <body class="container-fluid">
     <nav th:replace="fragments :: navbar"></nav>
-    <h1 class="col-md" th:text="${title}">Liste des élèves</h1>
+    <h1 class="classic-margin" th:text="${title}">Liste des élèves</h1>
     <hr/>
     <div class="row">
         <div class="col-6 content-center">
@@ -25,7 +25,7 @@
             <tr th:each="student : ${students}" class="student-row">
                 <th scope="row" th:text="${student.lastname} + ' ' + ${student.firstname}"></th>
                 <td th:text="${student.group} == null ? 'Aucun' : ${student.group.name}"></td>
-                <td><i th:class="${student.learningNotes} != '' ? 'green material-icons notes-button' : 'material-icons notes-button'"
+                <td><i th:class="${student.learningNotes.length()} > 0 ? 'green material-icons notes-button' : 'material-icons notes-button'"
                        th:id="${student.studentId}"
                        style="font-size:2rem; cursor: pointer"
                        data-toggle="modal"

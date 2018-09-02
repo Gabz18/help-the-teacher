@@ -1,6 +1,12 @@
 var studentId = null;
 var student = null;
 
+$(".student-row").click(function () {
+
+    var id = $(this).find("td i").attr("id");
+    window.location.href = "/student/" + id;
+});
+
 $("#filter-student-input").keyup(function () {
 
     var input = $(this).val().toLowerCase();

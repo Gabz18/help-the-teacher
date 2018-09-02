@@ -59,6 +59,7 @@ public class StudentController {
         if (group.isPresent()) {
             student.setGroup(group.get());
         }
+        student.setLearningNotes("");
         studentRepository.save(student);
         return "redirect:/student";
     }
@@ -136,5 +137,18 @@ public class StudentController {
         student.setLearningNotes(notes);
         studentRepository.save(student);
         return true;
+    }
+
+    @GetMapping("/{id}")
+    public String getStudent(@PathVariable Integer id, Model model) {
+
+        Optional<Student> student = studentRepository.findById(id);
+
+        if (student.isPresent()) {
+
+            model.addAttribute("student", student.get());
+            return "student/student-detail";
+        }
+        return "redirect:/student";
     }
 }
