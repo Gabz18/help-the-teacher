@@ -30,7 +30,7 @@
         </div>
         <div class="col-10">
             <a th:href="${student.group} != null ? '/group/' + ${student.group.groupId} : '#'">
-                <p th:text="${student.group} != null ? '/group/' + ${student.group.name} : 'Pas de groupe'"></p></a>
+                <p th:text="${student.group} != null ? ${student.group.name} : 'Pas de groupe'"></p></a>
         </div>
     </div>
     <div class="row border-bottom classic-margin">
