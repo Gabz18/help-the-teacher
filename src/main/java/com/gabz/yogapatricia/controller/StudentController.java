@@ -1,10 +1,13 @@
 package com.gabz.yogapatricia.controller;
 
 
+import com.gabz.yogapatricia.model.Course;
 import com.gabz.yogapatricia.model.Group;
 import com.gabz.yogapatricia.model.Student;
+import com.gabz.yogapatricia.repository.CourseRepository;
 import com.gabz.yogapatricia.repository.GroupRepository;
 import com.gabz.yogapatricia.repository.StudentRepository;
+import com.gabz.yogapatricia.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,6 +29,9 @@ public class StudentController {
 
     @Autowired
     private GroupRepository groupRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     @GetMapping("")
     public String getStudentList(Model model) {
@@ -147,6 +155,10 @@ public class StudentController {
         if (student.isPresent()) {
 
             model.addAttribute("student", student.get());
+            List<Course> groupCourses = courseRepository.findByGroup(student.get().getGroup());
+            model.addAttribute("dateUtil", new DateUtil());
+            Collections.reverse(groupCourses);
+            model.addAttribute("groupCourses", groupCourses);
             return "student/student-detail";
         }
         return "redirect:/student";

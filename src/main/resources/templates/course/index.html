@@ -8,14 +8,15 @@
     <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary w-100">
         <h3>Nouveau Cours</h3>
     </button>
+    <input type="text" class="form-control classic-margin" placeholder="Filtrer les cours" id="filter-course-input">
     <div class="row classic-margin">
-        <div class="col-12 col-lg-4 classic-margin-bot" th:each="course : ${courses}">
+        <div class="col-12 col-lg-4 classic-margin-bot course-card" th:each="course : ${courses}">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title" th:text="${course.group.name}"></h4>
-                    <h5 class="card-subtitle mb-2 text-muted" th:text="${course.date}"></h5>
+                    <h5 class="card-subtitle mb-2 text-muted" th:text="${dateUtil.formatDate(course.date)}"></h5>
                     <p class="card-text" th:text="${course.students.size()} + ' Participants sur ' + ${course.group.students.size()}"></p>
-                    <a href="#" class="card-link">Voir la liste</a>
+                    <a class="card-link text-primary" data-toggle="modal" data-target="#courseDetailModal">Voir la liste</a>
                 </div>
             </div>
         </div>
@@ -41,5 +42,27 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="courseDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="courseDetailModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script th:src="@{/js/course.js}"></script>
 </body>
 </html>

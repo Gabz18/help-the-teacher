@@ -15,8 +15,7 @@
                            type="checkbox"
                            class="form-check-input h-75 big-checkbox"
                            th:id="${potentialStudent.studentId}"
-                           th:checked="true"
-                    >
+                           th:checked="true" >
                     <label style="margin-left: 1rem;"
                            th:for="${potentialStudent.studentId}"
                            th:text="${potentialStudent.lastname} + ' ' + ${potentialStudent.firstname}"

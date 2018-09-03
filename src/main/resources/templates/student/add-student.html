@@ -4,7 +4,8 @@
 </head>
 <body class="container-fluid">
     <nav th:replace="fragments :: navbar"></nav>
-    <h1 class="classic-margin" th:text="${pageTitle}">Ajouter un élève</h1>
+    <a href="javascript:history.back()"><i class="material-icons classic-margin border border-primary" style="font-size: 300%">arrow_back</i></a>
+    <h1 class="page-title" th:text="${pageTitle}">Ajouter un élève</h1>
     <hr/>
     <form method="post" th:object="${student}">
         <div class="form-group">
@@ -33,14 +34,14 @@
                 <option th:each="group : ${groups}" th:text="${group.name}" th:value="${group.groupId}"></option>
             </select>
         </div>
-        <div class="row">
-            <div class="col-md">
-                <button class="btn btn-lg btn-success classic-margin" type="submit">Valider</button>
+        <div class="row classic-margin">
+            <div class="col-6">
+                <button class="btn btn-lg btn-block btn-success" type="submit">Valider</button>
             </div>
-            <div class="col-md text-right">
-                <a class="btn btn-lg btn-danger classic-margin"
+            <div class="col-6">
+                <a class="btn btn-lg btn-block btn-danger"
                    th:if="${delete} == true"
-                   th:href="@{/student/remove/{id}(id=${student.studentId})}">Supprimer Elève</a>
+                   th:href="@{/student/remove/{id}(id=${student.studentId})}">Supprimer</a>
             </div>
         </div>
     </form>

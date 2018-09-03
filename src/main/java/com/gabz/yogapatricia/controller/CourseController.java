@@ -6,6 +6,7 @@ import com.gabz.yogapatricia.model.Student;
 import com.gabz.yogapatricia.repository.CourseRepository;
 import com.gabz.yogapatricia.repository.GroupRepository;
 import com.gabz.yogapatricia.repository.StudentRepository;
+import com.gabz.yogapatricia.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,7 @@ public class CourseController {
         List<Course> courses = courseRepository.findAll();
         Collections.reverse(courses);
         model.addAttribute("courses", courses);
+        model.addAttribute("dateUtil", new DateUtil());
 
         return "course/index";
     }
