@@ -1,6 +1,7 @@
 package com.gabz.yogapatricia.controller;
 
 import com.gabz.yogapatricia.model.Course;
+import com.gabz.yogapatricia.model.CourseReport;
 import com.gabz.yogapatricia.model.Group;
 import com.gabz.yogapatricia.model.Student;
 import com.gabz.yogapatricia.repository.CourseRepository;
@@ -39,6 +40,37 @@ public class CourseController {
         model.addAttribute("dateUtil", new DateUtil());
 
         return "course/index";
+    }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public CourseReport getCourse(@PathVariable Integer id) {
+
+        Optional<Course> course = courseRepository.findById(id);
+        if (course.isPresent()) {
+
+            List<Student> courseGroupStudents = course.get().getGroup().getStudents();
+
+            CourseReport courseReport = new CourseReport();
+            List<Student> participants = new ArrayList<>();
+            List<Student> missing = new ArrayList<>();
+
+            for (Student courseGroupStudent : courseGroupStudents) {
+                if (course.get().getStudents().indexOf(courseGroupStudent) > -1) {
+                    participants.add(courseGroupStudent);
+                } else {
+                    missing.add(courseGroupStudent);
+                }
+            }
+
+            courseReport.setParticipants(participants);
+            courseReport.setMissingStudents(missing);
+
+            return courseReport.setObjectAjaxFriendly();
+
+        }
+
+        return null;
     }
 
     @GetMapping("/add/{id}")
