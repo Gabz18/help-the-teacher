@@ -56,7 +56,7 @@ public class GroupController {
         return "redirect:/group";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/students")
     public String getGroupStudents(@PathVariable(name = "id") Integer groupId, Model model) {
 
         Optional<Group> group = groupRepository.findById(groupId);
@@ -80,5 +80,19 @@ public class GroupController {
             groupRepository.save(upcomingModifications);
         }
         return true;
+    }
+
+    @GetMapping("/{id}")
+    public String getGroupDetail(@PathVariable Integer id, Model model) {
+
+        Optional<Group> group = groupRepository.findById(id);
+
+        if (!group.isPresent()) {
+            return "redirect:/group";
+        }
+
+        model.addAttribute("group", group.get());
+        model.addAttribute("courses", courseRepository.findByGroup(group.get()));
+        return "group/group-detail";
     }
 }

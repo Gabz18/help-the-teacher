@@ -27,8 +27,11 @@
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-12 col-lg-6 classic-margin-bot">
-                    <a th:href="@{/group/{id}(id=${group.groupId})}" class="btn btn-lg btn-block btn-info">Voir Liste Elèves</a>
+                <div class="col-6 col-lg-6 classic-margin-bot">
+                    <a th:href="@{/group/{id}/students(id=${group.groupId})}" class="btn btn-lg btn-block btn-info">Liste Elèves</a>
+                </div>
+                <div class="col-6 col-lg-6 classic-margin-bot">
+                    <a th:href="@{/group/{id}(id=${group.groupId})}" class="btn btn-lg btn-block btn-success">Détails</a>
                 </div>
                 <div class="col-6">
                     <button id="edit-button" class="btn btn-primary btn-lg btn-block">Editer</button>

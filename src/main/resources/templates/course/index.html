@@ -16,7 +16,7 @@
                     <h4 class="card-title" th:text="${course.group.name}"></h4>
                     <h5 class="card-subtitle mb-2 text-muted" th:text="${dateUtil.formatDate(course.date)}"></h5>
                     <p class="card-text" th:text="${course.students.size()} + ' Participants sur ' + ${course.group.students.size()}"></p>
-                    <a class="card-link text-primary" th:id="'grouplist-' + ${course.group.groupId}" data-toggle="modal" data-target="#courseDetailModal">Voir la liste</a>
+                    <a class="card-link text-primary group-list-link" th:id="'grouplist-' + ${course.id}" data-toggle="modal" data-target="#courseDetailModal">Voir la liste</a>
                 </div>
             </div>
         </div>
@@ -47,13 +47,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="courseDetailModalLabel"></h5>
+                    <h5 class="modal-title" id="courseDetailModalLabel">Présents / Absents pour ce cours</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <ul id="student-list" class="group-list">
+
+                    </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
