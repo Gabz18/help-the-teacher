@@ -5,3 +5,4 @@ $("#filter-course-input").keyup(function () {
         $(this).toggle($(this).text().toLowerCase().indexOf(input) > -1);
     });
 });
+

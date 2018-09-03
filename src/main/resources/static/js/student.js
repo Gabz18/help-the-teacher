@@ -3,7 +3,7 @@ var student = null;
 
 $(".student-row").click(function () {
 
-    var id = $(this).find("td i").attr("id");
+    var id = $(this).attr("id");
     window.location.href = "/student/" + id;
 });
 
@@ -18,7 +18,7 @@ $("#filter-student-input").keyup(function () {
 $(".notes-button").click(function () {
 
     studentId = $(this).attr("id");
-    $.get("student/get/" + studentId, function (data) {
+    $.get("/student/get/" + studentId, function (data) {
 
         student = data;
         $("#notesModalTitle").text("Notes pour " + student.firstname + " " + student.lastname);
@@ -53,7 +53,7 @@ $("#submit-notes-button").click(function () {
         notes = null;
     }
 
-    $.post("student/set-notes/" + studentId, { notes: notes }, function (data) {
+    $.post("/student/set-notes/" + studentId, { notes: notes }, function (data) {
         location.reload();
     });
 })

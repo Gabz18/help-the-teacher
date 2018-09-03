@@ -22,9 +22,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="student : ${students}" class="student-row">
-                <th scope="row" th:text="${student.lastname} + ' ' + ${student.firstname}"></th>
-                <td th:text="${student.group} == null ? 'Aucun' : ${student.group.name}"></td>
+            <tr th:each="student : ${students}">
+                <th scope="row" class="student-row" th:text="${student.lastname} + ' ' + ${student.firstname}" th:id="${student.studentId}"></th>
+                <td class="student-row" th:text="${student.group} == null ? 'Aucun' : ${student.group.name}" th:id="${student.studentId}"></td>
                 <td><i th:class="${student.learningNotes.length()} > 0 ? 'green material-icons notes-button' : 'material-icons notes-button'"
                        th:id="${student.studentId}"
                        style="font-size:2rem; cursor: pointer"

@@ -29,7 +29,8 @@
             <h5><i class="large material-icons">group</i></h5>
         </div>
         <div class="col-10">
-            <a th:href="'/group/' + ${student.group.groupId}"><p th:text="${student.group.name}"></p></a>
+            <a th:href="${student.group} != null ? '/group/' + ${student.group.groupId} : '#'">
+                <p th:text="${student.group} != null ? '/group/' + ${student.group.name} : 'Pas de groupe'"></p></a>
         </div>
     </div>
     <div class="row border-bottom classic-margin">
