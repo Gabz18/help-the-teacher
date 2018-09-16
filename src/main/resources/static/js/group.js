@@ -1,21 +1,24 @@
-$("#edit-button").click(function () {
+$(".edit-name-button").click(function () {
 
-   $("#group-title").toggle();
-   $("#group-edition").toggle();
+   var groupId = $(this).attr("id").slice(11);
+   $("#group-title" + groupId).toggle();
+   $("#group-edition" + groupId).toggle();
    $(this).toggle();
 });
 
-$("#cancel-edit").click(function () {
+$(".cancel-edit").click(function () {
 
-   $("#edit-button").toggle();
-    $("#group-edition").toggle();
-    $("#group-title").toggle();
+    var groupId = $(this).attr("id").slice(11);
+
+    $("#edit-button" + groupId).toggle();
+    $("#group-edition" + groupId).toggle();
+    $("#group-title" + groupId).toggle();
 });
 
-$("#submit-edit").click(function () {
+$(".submit-edit").click(function () {
 
-    var input = $("#editedGroupName").val();
-    var groupId= $("#groupId").val();
+    var groupId = $(this).attr("id").slice(11);
+    var input = $("#editedGroupName" + groupId).val();
 
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
