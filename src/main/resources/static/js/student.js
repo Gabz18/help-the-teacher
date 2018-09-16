@@ -53,7 +53,21 @@ $("#submit-notes-button").click(function () {
         notes = null;
     }
 
-    $.post("/student/set-notes/" + studentId, { notes: notes }, function (data) {
-        location.reload();
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
+    $.ajax({
+        type: "POST",
+        url: "/student/set-notes/" + studentId,
+        data: { notes: notes },
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader(header, token);
+        },
+        success: function () {
+            location.reload();
+        },
+        error: function (request, status, error) {
+            alert(status);
+        }
     });
 })

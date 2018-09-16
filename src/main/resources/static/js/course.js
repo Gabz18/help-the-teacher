@@ -9,6 +9,7 @@ $("#filter-course-input").keyup(function () {
 $(".group-list-link").click(function () {
 
     var id = $(this).attr("id").slice(10);
+
     $.get("/course/" + id, function (data) {
 
         var participants = data.participants;
