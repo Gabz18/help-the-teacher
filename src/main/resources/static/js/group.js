@@ -38,3 +38,10 @@ $(".submit-edit").click(function () {
         }
     });
 });
+
+//supprimer groupe
+$(".deleteGroupButton").click(function () {
+
+    var groupId = $(this).attr("id").slice(17);
+    $("#confirmGroupDelete").attr("href", "/group/remove/" + groupId);
+});

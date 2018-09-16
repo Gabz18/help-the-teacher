@@ -28,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/course")
-                    .permitAll();
+                    .permitAll()
+                .defaultSuccessUrl("/", true);
     }
 
     @Bean

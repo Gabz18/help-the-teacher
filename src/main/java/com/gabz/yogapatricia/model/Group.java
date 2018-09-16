@@ -13,9 +13,9 @@ public class Group {
     private int groupId;
     @Size(min = 3, message = "Champ requis")
     private String name;
-    @OneToMany(mappedBy = "group", cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.REMOVE)
     private List<Student> students;
-    @OneToMany(mappedBy = "group", cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.REMOVE)
     private List<Course> courses;
 
     public Group() {
